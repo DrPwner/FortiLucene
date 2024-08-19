@@ -14,7 +14,6 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 - **Query Validation**: Ensures syntactically correct queries
 - **Copy to Clipboard**: Easy export of finished queries
 - **Import Feature**: Bulk import values for query construction
-- **Responsive Design**: Works on desktop and mobile devices
 - **Help Menu**: Built-in guide for query syntax and examples
 
 ## 🏁 Getting Started
