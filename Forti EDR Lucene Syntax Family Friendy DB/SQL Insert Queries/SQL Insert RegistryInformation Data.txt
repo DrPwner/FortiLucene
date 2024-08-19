@@ -1,0 +1,7 @@
+INSERT INTO RegistryInformation (BuiltInQuery, FamilyFriendlyQuery) VALUES
+('Registry.Name', 'Registry Key Name'),
+('Registry.Path', 'Registry Key Path'),
+('Registry.ValueType', 'Registry Value Type'),
+('Registry.Data', 'Registry Value Data'),
+('Registry.PreviousData', 'Previous Registry Value Data'),
+('Registry.PreviousValueType', 'Previous Registry Value Type');

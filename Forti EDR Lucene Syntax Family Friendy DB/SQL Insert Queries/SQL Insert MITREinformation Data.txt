@@ -1,0 +1,5 @@
+INSERT INTO MITREinformation (BuiltInQuery, FamilyFriendlyQuery) VALUES
+('MITRE.TacticID', 'MITRE ATT&CK Tactic ID'),
+('MITRE.Tactic', 'MITRE ATT&CK Tactic Name'),
+('MITRE.TechniqueID', 'MITRE ATT&CK Technique ID'),
+('MITRE.Techniques.Technique', 'MITRE ATT&CK Technique Name');

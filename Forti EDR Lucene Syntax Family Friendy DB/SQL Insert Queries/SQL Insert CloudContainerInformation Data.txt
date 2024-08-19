@@ -1,0 +1,16 @@
+INSERT INTO CloudContainerInformation (BuiltInQuery, FamilyFriendlyQuery) VALUES
+('Device.Workload.CloudProvider', 'Cloud Service Provider'),
+('Device.Workload.CloudAccountName', 'Cloud Account Name'),
+('Device.Workload.CloudAccountId', 'Cloud Account ID'),
+('Device.Workload.ClusterName', 'Kubernetes Cluster Name'),
+('Device.Workload.ClusterVersion', 'Kubernetes Cluster Version'),
+('Device.Workload.NodeName', 'Kubernetes Node Name'),
+('Device.Workload.ContainerRuntimeType', 'Container Runtime Type'),
+('Device.Workload.ContainerRuntimeVersion', 'Container Runtime Version'),
+('Device.Workload.PodName', 'Kubernetes Pod Name'),
+('Device.Workload.PodID', 'Kubernetes Pod ID'),
+('Device.Workload.Pod.Namespace', 'Kubernetes Pod Namespace'),
+('Device.Workload.ContainerName', 'Container Name'),
+('Device.Workload.ContainerID', 'Container ID'),
+('Device.Workload.Container.ImageName', 'Container Image Name'),
+('Device.Workload.Container.ImageID', 'Container Image ID');

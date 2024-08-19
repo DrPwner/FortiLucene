@@ -1,0 +1,15 @@
+Device.Workload.CloudProvider
+Device.Workload.CloudAccountName
+Device.Workload.CloudAccountId
+Device.Workload.ClusterName
+Device.Workload.ClusterVersion
+Device.Workload.NodeName
+Device.Workload.ContainerRuntimeType
+Device.Workload.ContainerRuntimeVersion
+Device.Workload.PodName
+Device.Workload.PodID
+Device.Workload.Pod.Namespace
+Device.Workload.ContainerName
+Device.Workload.ContainerID
+Device.Workload.Container.ImageName
+Device.Workload.Container.ImageID

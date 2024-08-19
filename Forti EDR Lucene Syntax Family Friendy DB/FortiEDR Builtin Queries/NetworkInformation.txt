@@ -1,0 +1,12 @@
+Protocol
+LocalIP
+LocalPort
+RemoteIP
+RemotePort
+URL
+Target.Network.DNS
+Target.Network.AdditionalData.DNSRequest.Type
+Target.Network.AdditionalData.DNSRequest.Class
+Target.Network.AdditionalData.DNSResponse.Data
+Target.Network.AdditionalData.ICMPRequest.ICMPTTL
+Target.Network.AdditionalData.ICMPResponse.ICMPTTL

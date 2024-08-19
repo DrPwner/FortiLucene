@@ -1,0 +1,6 @@
+Registry.Name
+Registry.Path
+Registry.ValueType
+Registry.Data
+Registry.PreviousData
+Registry.PreviousValueType

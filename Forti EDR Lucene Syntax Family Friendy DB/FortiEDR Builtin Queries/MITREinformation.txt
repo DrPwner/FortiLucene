@@ -1,0 +1,4 @@
+MITRE.TacticID
+MITRE.Tactic
+MITRE.TechniqueID
+MITRE.Techniques.Technique

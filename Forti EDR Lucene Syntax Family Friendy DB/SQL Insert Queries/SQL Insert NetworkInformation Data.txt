@@ -1,0 +1,13 @@
+INSERT INTO NetworkInformation (BuiltInQuery, FamilyFriendlyQuery) VALUES
+('Protocol', 'Network Protocol'),
+('LocalIP', 'Local IP Address'),
+('LocalPort', 'Local Port Number'),
+('RemoteIP', 'Remote IP Address'),
+('RemotePort', 'Remote Port Number'),
+('URL', 'Accessed URL'),
+('Target.Network.DNS', 'DNS Query'),
+('Target.Network.AdditionalData.DNSRequest.Type', 'DNS Request Type'),
+('Target.Network.AdditionalData.DNSRequest.Class', 'DNS Request Class'),
+('Target.Network.AdditionalData.DNSResponse.Data', 'DNS Response Data'),
+('Target.Network.AdditionalData.ICMPRequest.ICMPTTL', 'ICMP Request Time-to-Live'),
+('Target.Network.AdditionalData.ICMPResponse.ICMPTTL', 'ICMP Response Time-to-Live');
