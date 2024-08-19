@@ -33,13 +33,10 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 2. Navigate to the project directory:
    - cd FortiLucene
 
-3. Install required packages:
-   - pip install -r requirements.txt
-
-4. Run the application:
+3. Run the application:
    - python app.py
 
-5. Open your browser and go to `http://localhost:5000`
+4. Open your browser and go to `http://localhost:5000`
 
 
 ## 🖥 Usage
