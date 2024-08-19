@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Queries - FortiLucene</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="saved-queries">
+        <h2>Saved Queries</h2>
+        <ul id="saved-queries-list"></ul>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedQueriesList = document.getElementById('saved-queries-list');
+
+        fetch('/get_saved_queries')
+        .then(response => response.json())
+        .then(queries => {
+            savedQueriesList.innerHTML = '';
+            queries.forEach(query => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <h3>${query.name}</h3>
+                    <p>By: ${query.user}</p>
+                    <pre>${query.query}</pre>
+                `;
+                savedQueriesList.appendChild(li);
+            });
+        });
+    });
+    </script>
+</body>
+</html>
