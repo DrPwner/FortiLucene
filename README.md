@@ -31,7 +31,7 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
    - git clone https://github.com/DrPwner/FortiLucene.git
 
 2. Navigate to the project directory:
-   - cd fortilucene-query-builder
+   - cd FortiLucene
 
 3. Install required packages:
    - pip install -r requirements.txt
