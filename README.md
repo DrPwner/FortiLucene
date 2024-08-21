@@ -52,7 +52,7 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 The import feature allows you to bulk import values for your queries. Here's how to use it:
 
 1. Prepare a text file with your values, one per line.
-2. In the query builder, click on the "..." next to the value input field.
+2. In the query builder, click on the " ⋮ " next to the value input field.
 3. Select "Import" from the dropdown.
 4. Choose an operator for combining the imported values.
 5. Select your prepared text file.
