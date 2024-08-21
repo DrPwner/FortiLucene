@@ -20,7 +20,7 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 
 ### Prerequisites
 
-- Python 3.7+
+- Python 3.X
 - Flask
 - SQLite3
 
