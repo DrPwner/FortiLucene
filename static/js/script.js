@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
         inputGroup.appendChild(newInputGroup);
     }
 
-    function handleImport(inputElement, operator) {
+   function handleImport(inputElement, operator) {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = '.txt';
@@ -210,7 +210,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const content = e.target.result;
                 const values = content.split('\n').filter(line => line.trim() !== '');
                 inputElement.value = 'Successfully imported';
-                inputElement.dataset.importedValues = values.join(` ${operator} `);
+                // Join the values with a space and the operator
+                inputElement.dataset.importedValues = values.join(` ${operator} `).replace(/\s+/g, ' ');
                 inputElement.dataset.importedOperator = operator;
             };
             
@@ -219,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         fileInput.click();
     }
-
     buildQueryBtn.addEventListener('click', () => {
         const parts = Array.from(queryParts.children).map(part => {
             const inputGroups = Array.from(part.querySelectorAll('.input-group'));
