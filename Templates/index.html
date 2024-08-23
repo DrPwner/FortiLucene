@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FortiLucene Query Builder</title>
+    <title>Fortilucene Query Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
@@ -12,24 +12,27 @@
     <canvas id="background-canvas"></canvas>
     <div id="main-container">
         <div id="query-builder-container">
-            <h1 class="title">Fortilucene Query Builder</h1>
+            <h1 id="fortilucene-query-builder" class="title">Fortilucene Query Builder</h1>
             <div id="query-parts"></div>
         </div>
+
         <div id="build-query-container">
             <button id="build-query">Build Query</button>
         </div>
+
         <div id="query-result-container">
             <h3>Query Result:</h3>
             <div id="query-result"></div>
-            <button id="copy-query" style="display:none;">Copy Query</button>
+            <button id="copy-query">Copy Query</button>
+            <button id="save-query">Save Query</button>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/background.js') }}"></script>
 
     <button id="toggle-animation" class="toggle-btn">Disable Animation</button>
-
-    <button id="help-button" class="help-btn">Help</button>
+    <button id="help-button" class="help-btn" >Help</button>
+    <div id="edit-database-btn-container">
+        <button id="edit-database-btn">Edit FortiLucene Database</button>
+    </div>
     <div id="help-menu" class="help-menu">
         <div class="help-content">
             <h2>FortiLucene Query Builder Help</h2>
@@ -37,12 +40,6 @@
             <ul id="examples-list"></ul>
             <h3>Operators</h3>
             <table id="operators-table">
-                <thead>
-                    <tr>
-                        <th>Operator</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
                 <tbody></tbody>
             </table>
             <h3>Wildcards</h3>
@@ -54,5 +51,33 @@
         </div>
         <button id="close-help" class="close-btn">&times;</button>
     </div>
+
+    <div id="database-editor" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit FortiLucene Database</h2>
+            <div id="database-content">
+                <!-- Table content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <canvas id="background-canvas"></canvas>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/db.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/background.js') }}"></script>
+  
+    <div id="custom-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <input type="text" id="modal-input">
+            <div class="modal-buttons">
+                <button id="modal-cancel">Cancel</button>
+                <button id="modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
