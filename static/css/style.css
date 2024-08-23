@@ -198,14 +198,14 @@ body, html {
     display: block;
 }
 
-.dropdown-content a:hover {
+/*.dropdown-content a:hover {
     background-color: #f1f1f1;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
+*/
 .input-group {
     display: flex;
     align-items: center;
