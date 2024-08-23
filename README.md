@@ -15,6 +15,8 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 - **Copy to Clipboard**: Easy export of finished queries
 - **Import Feature**: Bulk import values for query construction
 - **Help Menu**: Built-in guide for query syntax and examples
+- **Save Queries**: Ability to save built Queries in a dedicated Table in the backend.
+- **Import & Export**: Easily Export your Saved Queries and for back up, or share it with a friend (this is where the Import option takes place :) )
 
 ## 🏁 Getting Started
 
@@ -46,6 +48,9 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 4. Add additional query parts as needed.
 5. Click "Build Query" to generate your Lucene query.
 6. Use the "Copy Query" button to copy the generated query to your clipboard.
+7. Save your Query for Future Reference.
+8. Click "Help Menu" For further insights on FortiEDR Lucene Syntax (Examples, Usage, Syntax).
+9. Click "Edit FortiLucene Database" To either export or import your saved queries, or renaming the family friendly name of any corresponding Built-in Query of your choice.
 
 ## 📥 Import Feature
 
@@ -74,6 +79,7 @@ NOT RemoteIP:(143.109.206.41 OR 192.98.127.57 OR 203.172.54.84 OR 58.183.240.171
 Note that the import feature is not strictly for IP's, it can be useful for anything. For example, creating a query to look for a handful of MTIRE TTP's.
 ## Future Improvements
 
-1. Interaction with FortiLucene Database, have the ability to rename an existing family friendly FortiEDR Lucene Query.
-2. UI Improvements
-3. Backend Optimization, and more !
+1. Interaction with FortiLucene Database, have the ability to rename an existing family friendly FortiEDR Lucene Query. (Done)
+2. UI Improvements (Partially Done)
+3. Backend Optimization, and more ! (Partially Done)
+4. Any new ideas? let me know.
