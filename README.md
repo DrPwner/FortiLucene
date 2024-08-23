@@ -52,6 +52,10 @@ FortiLucene Query Builder is a powerful web application designed to simplify the
 8. Click "Help Menu" For further insights on FortiEDR Lucene Syntax (Examples, Usage, Syntax).
 9. Click "Edit FortiLucene Database" To either export or import your saved queries, or renaming the family friendly name of any corresponding Built-in Query of your choice.
 
+https://github.com/user-attachments/assets/b16aa71d-4c75-4b70-b343-4929f5899a62
+
+
+
 ## 📥 Import Feature
 
 The import feature allows you to bulk import values for your queries. Here's how to use it:
