@@ -55,7 +55,7 @@ The import feature allows you to bulk import values for your queries. Here's how
 2. In the query builder, click on the " ⋮ " next to the value input field.
 3. Select "Import" from the dropdown.
 4. Choose an operator for combining the imported values.
-5. Select your prepared text file.
+5. Select your prepared text file. (Make sure values inside text file are Bellow each other... seperated by new line)
 
 Example import file content for IP addresses:
 
@@ -70,6 +70,8 @@ After import, your query might look like:
 NOT RemoteIP:(143.109.206.41 OR 192.98.127.57 OR 203.172.54.84 OR 58.183.240.171 OR 111.42.78.233 OR 150.123.98.207 OR 176.98.23.45 OR 207.66.142.89 OR 89.204.111.254 OR 62.185.30.14 OR 185.173.98.140 OR 94.199.7.120 OR 52.232.64.91 OR 139.87.123.220 OR 165.77.53.9 OR 
  200.88.29.182 OR 91.32.174.105 OR 215.120.65.240 OR 68.74.12.197 OR 159.189.77.32)
 ```
+
+Note that the import feature is not strictly for IP's, it can be useful for anything. For example, creating a query to look for a handful of MTIRE TTP's.
 ## Future Improvements
 
 1. Interaction with FortiLucene Database, have the ability to rename an existing family friendly FortiEDR Lucene Query.
