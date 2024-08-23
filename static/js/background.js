@@ -4,29 +4,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('background-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
+    let nodes = [];
+    let targetNodeCount;
+    const mouse = { x: undefined, y: undefined, radius: 100 };
 
     function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
+        const newWidth = window.innerWidth;
+        const newHeight = window.innerHeight;
+        
+        // Calculate scale factors
+        const scaleX = newWidth / width;
+        const scaleY = newHeight / height;
+
+        width = newWidth;
+        height = newHeight;
         canvas.width = width;
         canvas.height = height;
+        
+        // Adjust number of nodes based on screen size
+        targetNodeCount = Math.floor((width * height) / 10000);
+
+        // Adjust existing node positions
+        nodes.forEach(node => {
+            node.x *= scaleX;
+            node.y *= scaleY;
+        });
     }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const nodes = [];
-    const numNodes = 100;
-    let mouse = { x: undefined, y: undefined, radius: 150 };
-
-    for (let i = 0; i < numNodes; i++) {
-        nodes.push({
+    function createNode() {
+        return {
             x: Math.random() * width,
             y: Math.random() * height,
             radius: Math.random() * 2 + 1,
             vx: Math.random() * 0.5 - 0.25,
             vy: Math.random() * 0.5 - 0.25
-        });
+        };
+    }
+
+    function adjustNodeCount() {
+        const difference = targetNodeCount - nodes.length;
+        if (difference > 0) {
+            // Add nodes
+            for (let i = 0; i < difference; i++) {
+                nodes.push(createNode());
+            }
+        } else if (difference < 0) {
+            // Remove nodes
+            nodes.splice(targetNodeCount, -difference);
+        }
     }
 
     function drawNode(node) {
@@ -45,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateNodes() {
+        adjustNodeCount();
+
         nodes.forEach(node => {
             if (mouse.x !== undefined && mouse.y !== undefined) {
                 let dx = mouse.x - node.x;
@@ -65,9 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
             node.vx *= 0.95;
             node.vy *= 0.95;
 
-            // Bounce off the edges
-            if (node.x < 0 || node.x > width) node.vx *= -1;
-            if (node.y < 0 || node.y > height) node.vy *= -1;
+            // Smooth edge bouncing
+            if (node.x < 0 || node.x > width) {
+                node.vx *= -1;
+                node.x = Math.max(0, Math.min(width, node.x));
+            }
+            if (node.y < 0 || node.y > height) {
+                node.vy *= -1;
+                node.y = Math.max(0, Math.min(height, node.y));
+            }
         });
     }
 
@@ -98,6 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseleave', function() {
         mouse.x = undefined;
         mouse.y = undefined;
+    });
+
+    // Initial setup
+    width = window.innerWidth;
+    height = window.innerHeight;
+    resizeCanvas();
+    
+    // Add event listener for window resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizeCanvas, 250);
     });
 
     animate();
