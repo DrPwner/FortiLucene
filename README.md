@@ -58,13 +58,11 @@ The import feature allows you to bulk import values for your queries. Here's how
 5. Select your prepared text file.
 
 Example import file content for IP addresses:
-![image](https://github.com/user-attachments/assets/2dd0521c-6f81-469e-a9fa-97debb5bb813)
 
-![image](https://github.com/user-attachments/assets/e25170aa-a38e-48d1-a52a-4f8032619bc7)
 
-![image](https://github.com/user-attachments/assets/3a4dc5ed-bb1d-48f7-89ef-a99250b04b75)
 
-![image](https://github.com/user-attachments/assets/26873cd6-962c-4be5-8585-7923e7016d2b)
+https://github.com/user-attachments/assets/65b14c6c-8235-448e-b333-cba95ce9ff51
+
 
 
 
