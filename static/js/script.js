@@ -58,7 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         valueInput.className = 'value-input';
         valueInput.placeholder = 'Value';
 
+        const currentOperator = document.createElement('span');
+        currentOperator.className = 'current-operator';
+        currentOperator.style.display = 'none';
+
         const endDropdown = createDropdown(['||', '&&', '_exists_', '+', '-', '.', 'TO' , 'Import'], (op) => {
+          
             if (op === 'Import') {
                 showImportOperators(endDropdown, valueInput);
             } else {
@@ -67,12 +72,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         inputGroup.appendChild(valueInput);
         inputGroup.appendChild(endDropdown);
+        inputGroup.appendChild(endDropdown);
 
-        endDropdown.style.display = 'none';
 
-        valueInput.addEventListener('input', () => {
-            endDropdown.style.display = valueInput.value ? 'inline-block' : 'none';
-        });
+        //removed so that the input box doesnt affect the three dot menu visibility.
+        // endDropdown.style.display = 'none';
+
+        // valueInput.addEventListener('input', () => {
+        //     endDropdown.style.display = valueInput.value ? 'inline-block' : 'none';
+        // });
 
         const operatorSelect = document.createElement('select');
         operatorSelect.className = 'operator-select';
@@ -126,36 +134,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function createDropdown(options, onSelect) {
-        const dropdown = document.createElement('div');
-        dropdown.className = 'dropdown';
-        
-        const button = document.createElement('button');
-        button.className = 'dropbtn';
-        button.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-        
-        const content = document.createElement('div');
-        content.className = 'dropdown-content';
-        
-        options.forEach(op => {
+    function updateImportOperator(inputElement, newOperator) {
+        if (inputElement.dataset.importedValues) {
+            const values = inputElement.dataset.importedValues.split(/\s+(?:&&|\|\||AND|OR)\s+/);
+            inputElement.dataset.importedValues = values.join(` ${newOperator} `);
+            inputElement.dataset.importedOperator = newOperator;
+            // Optionally, update the display of the current operator
+            const operatorDisplay = inputElement.parentNode.querySelector('.current-operator');
+            if (operatorDisplay) {
+                operatorDisplay.textContent = `Current Operator: ${newOperator}`;
+            }
+        }
+    }
+
+
+function createDropdown(options, onSelect) {
+    const dropdown = document.createElement('div');
+    dropdown.className = 'dropdown';
+    
+    const button = document.createElement('button');
+    button.className = 'dropbtn';
+    button.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+    
+    const content = document.createElement('div');
+    content.className = 'dropdown-content';
+    
+    options.forEach(op => {
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = op;
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            onSelect(op);
+        });
+        content.appendChild(a);
+    });
+    
+    dropdown.appendChild(button);
+    dropdown.appendChild(content);
+    
+    // Add click event listener to toggle dropdown visibility
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        content.style.display = 'none';
+    });
+    
+    return dropdown;
+}
+
+    function showOperatorsWithRemoveImport(dropdown, inputElement) {
+        const operators = ['&&', '||', 'AND', 'OR', 'Remove Import'];
+        dropdown.querySelector('.dropdown-content').innerHTML = '';
+        operators.forEach(op => {
             const a = document.createElement('a');
             a.href = '#';
             a.textContent = op;
             a.addEventListener('click', (e) => {
                 e.preventDefault();
-                onSelect(op);
+                if (op === 'Remove Import') {
+                    removeImport(inputElement, dropdown);
+                } else {
+                    updateImportOperator(inputElement, op);
+                }
             });
-            content.appendChild(a);
+            dropdown.querySelector('.dropdown-content').appendChild(a);
         });
-        
-        dropdown.appendChild(button);
-        dropdown.appendChild(content);
-        
-        return dropdown;
     }
 
+
     function showImportOperators(dropdown, inputElement) {
-        const importOperators = ['!', '-', '&&', '||', 'AND', 'OR', 'NOT', '_exists_', '.'];
+        const importOperators = ['&&', '||', 'AND', 'OR', 'Remove Import'];
         dropdown.querySelector('.dropdown-content').innerHTML = '';
         importOperators.forEach(op => {
             const a = document.createElement('a');
@@ -163,7 +216,11 @@ document.addEventListener('DOMContentLoaded', function() {
             a.textContent = op;
             a.addEventListener('click', (e) => {
                 e.preventDefault();
-                handleImport(inputElement, op);
+                if (op === 'Remove Import') {
+                    removeImport(inputElement, dropdown);
+                } else {
+                    handleImport(inputElement, op, dropdown);
+                }
             });
             dropdown.querySelector('.dropdown-content').appendChild(a);
         });
@@ -197,7 +254,57 @@ document.addEventListener('DOMContentLoaded', function() {
         inputGroup.appendChild(newInputGroup);
     }
 
-   function handleImport(inputElement, operator) {
+
+    //Useless piece of shit
+    // function showRemoveImportOption(dropdown, inputElement) {
+    //     dropdown.querySelector('.dropdown-content').innerHTML = '';
+    //     const removeOption = document.createElement('a');
+    //     removeOption.href = '#';
+    //     removeOption.textContent = 'Remove Import';
+    //     removeOption.addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         removeImport(inputElement, dropdown);
+    //     });
+    //     dropdown.querySelector('.dropdown-content').appendChild(removeOption);
+    // }
+
+
+    function removeImport(inputElement, dropdown) {
+        if (confirm('Are you sure you want to remove the imported file?')) {
+            inputElement.value = '';
+            inputElement.dataset.importedValues = '';
+            inputElement.dataset.importedOperator = '';
+            
+            // Re-enable the input field
+            inputElement.disabled = false;
+            
+            // Remove the current operator display if it exists
+            const operatorDisplay = inputElement.parentNode.querySelector('.current-operator');
+            if (operatorDisplay) {
+                operatorDisplay.remove();
+            }
+    
+            // Restore original dropdown options
+            const originalOptions = ['||', '&&', '_exists_', '+', '-', '.', 'TO', 'Import'];
+            dropdown.querySelector('.dropdown-content').innerHTML = '';
+            originalOptions.forEach(op => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = op;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (op === 'Import') {
+                        showImportOperators(dropdown, inputElement);
+                    } else {
+                        addInputBox(inputElement.parentNode, op);
+                    }
+                });
+                dropdown.querySelector('.dropdown-content').appendChild(a);
+            });
+        }
+    }
+
+    function handleImport(inputElement, operator, dropdown) {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = '.txt';
@@ -209,10 +316,15 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 const content = e.target.result;
                 const values = content.split('\n').filter(line => line.trim() !== '');
-                inputElement.value = 'Successfully imported';
-                // Join the values with a space and the operator
-                inputElement.dataset.importedValues = values.join(` ${operator} `).replace(/\s+/g, ' ');
+                inputElement.value = file.name;
+                inputElement.dataset.importedValues = values.join(` ${operator} `);
                 inputElement.dataset.importedOperator = operator;
+                
+                // Disable the input field
+                inputElement.disabled = true;
+                
+                // Show operators and Remove Import option
+                showOperatorsWithRemoveImport(dropdown, inputElement);
             };
             
             reader.readAsText(file);
@@ -220,6 +332,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         fileInput.click();
     }
+
+
     buildQueryBtn.addEventListener('click', () => {
         const parts = Array.from(queryParts.children).map(part => {
             const inputGroups = Array.from(part.querySelectorAll('.input-group'));
