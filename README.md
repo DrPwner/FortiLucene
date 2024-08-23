@@ -60,8 +60,7 @@ The import feature allows you to bulk import values for your queries. Here's how
 Example import file content for IP addresses:
 
 
-
-https://github.com/user-attachments/assets/65b14c6c-8235-448e-b333-cba95ce9ff51
+https://github.com/user-attachments/assets/146183ee-24f9-49a8-a126-f0bc48677fb4
 
 
 
