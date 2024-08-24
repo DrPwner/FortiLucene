@@ -315,7 +315,7 @@ function createDropdown(options, onSelect) {
             
             reader.onload = function(e) {
                 const content = e.target.result;
-                const values = content.split('\n').filter(line => line.trim() !== '');
+                const values = content.split(/\r?\n/).map(line => line.trim()).filter(line => line !== '');
                 inputElement.value = file.name;
                 inputElement.dataset.importedValues = values.join(` ${operator} `);
                 inputElement.dataset.importedOperator = operator;
