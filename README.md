@@ -5,6 +5,8 @@
 bad GIF quality ^, try zooming in a bit.
 ## 🚀 About
 
+{DEPRICATED} CHECK OUT -> https://github.com/DrPwner/FortiLucyFox ITS BETTER
+
 FortiLucene Query Builder is a powerful web application designed to simplify the process of constructing complex Lucene queries for FortiEDR. It provides an intuitive interface for users to build and visualize, making Threat Hunting and Log Analysis more efficient and accessible.
 
 ## ✨ Features
